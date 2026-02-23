@@ -6,6 +6,7 @@ import gymPic2 from "../assets/gym-pics-2.jpg";
 import board from "../assets/location.webp";
 import { Location01FreeIcons } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { motion } from "framer-motion";
 
 const Home = () => {
 	const [activeId, setActiveId] = useState(1);
@@ -37,13 +38,24 @@ const Home = () => {
 		},
 	];
 
+	const leftVariant = {
+			hidden: {x: -300},
+			visible: {x: 0}
+		}
+	
+		const rightVariant = {
+			hidden: {x: 300},
+			visible: {x: 0}
+		}
+
 	return (
 		<section>
-			<header className="pt-4 mx-auto">
+			<header  className="pt-4 mx-auto">
 				<Navbar />
 
 				<div className="lg:flex pt-15">
-					<div className="mt-10 pl-5 lg:pl-15">
+
+					<motion.div variants={leftVariant} initial="hidden" animate="visible" transition={{duration: 1.2}} className="mt-10 pl-5 lg:pl-15">
 						<h2 className="text-5xl lg:text-7xl w-80 lg:w-120 text-white">Unleash Your Inner Athlete</h2>
 
 						<p className="w-90 mt-5 text-white">
@@ -61,9 +73,9 @@ const Home = () => {
 							</button>
 						</div>
 						<h1 className="text-white text-5xl w-100 mt-20">Transform Your Fitness Journey</h1>
-					</div>
+					</motion.div>
 
-					<div className="mt-18 lg:pl-50 flex flex-col relative">
+					<motion.div variants={rightVariant} initial="hidden" animate="visible" transition={{duration: 1.2}} className="mt-18 lg:pl-50 flex flex-col relative">
 						<div className="w-60 h-60 mx-auto lg:w-100 lg:h-100 overflow-hidden rounded-2xl">
 							<img src={image} alt="bg" className="w-full h-full object-cover" />
 						</div>
@@ -76,7 +88,8 @@ const Home = () => {
 							Offers customised workout programs to help clients to acheive their fitness goals such as weight loss,
 							strength nd conditioning and body shaping.
 						</p>
-					</div>
+					</motion.div>
+
 				</div>
 			</header>
 

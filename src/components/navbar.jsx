@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { EquipmentGym03Icon, Menu03FreeIcons } from "@hugeicons/core-free-icons";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
 	const [showSideBar, setShowSideBar] = useState(false);
@@ -9,9 +10,14 @@ const Navbar = () => {
 		setShowSideBar(!showSideBar);
 	};
 
+	const navbarVariant = {
+		hidden: {y:-100},
+		visible: {y:0}
+	}
+
 	return (
 		<>
-			<nav className="bg-gray-900 w-[90%] lg:w-[85%] rounded-xl z-30 left-1/2 -translate-x-1/2 py-2 px-3 mx-auto flex justify-between fixed items-center">
+			<motion.nav variants={navbarVariant} initial="hidden" animate="visible" transition={{duration: 1}} className="bg-gray-900 w-[90%] lg:w-[85%] rounded-xl z-30 left-1/2 -translate-x-1/2 py-2 px-3 mx-auto flex justify-between fixed items-center">
 				<div className="flex gap-2 items-centers">
 					<HugeiconsIcon icon={EquipmentGym03Icon} className="text-green-500" size={45} />
 					<p className="text-3xl text-green-500 font-semibold">fitnation</p>
@@ -33,7 +39,7 @@ const Navbar = () => {
 					size={24}
 					onClick={toggleSidebar}
 				/>
-			</nav>
+			</motion.nav>
 
 			{showSideBar ? (
 				<div className="fixed inset-0 bg-black/60 z-40" onClick={toggleSidebar}>
